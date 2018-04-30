@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".PianoActivity">
+
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        >
+
+        <Button
+            android:id="@+id/a"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="a" />
+
+        <Button
+            android:id="@+id/b"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="b" />
+
+        <Button
+            android:id="@+id/c"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="c" />
+
+        <Button
+            android:id="@+id/d"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="d" />
+
+        <Button
+            android:id="@+id/e"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="e" />
+
+        <Button
+            android:id="@+id/f"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="f" />
+
+        <Button
+            android:id="@+id/g"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="g" />
+
+
+        <Button
+            android:id="@+id/h"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="h" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/record"
+        android:layout_width="65dp"
+        android:layout_height="87dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="58dp"
+        android:text="record" />
+
+    <Button
+        android:id="@+id/Stop"
+        android:layout_width="65dp"
+        android:layout_height="83dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/record"
+        android:text="Stop" />
+
+    <Button
+        android:id="@+id/playrecord"
+        android:layout_width="63dp"
+        android:layout_height="86dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="162dp"
+        android:text="playrecord" />
+
+    <Button
+        android:id="@+id/stopRecord"
+        android:layout_width="63dp"
+        android:layout_height="78dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/playrecord"
+        android:layout_marginTop="-162dp"
+        android:text="StopRecord" />
+
+</RelativeLayout>
