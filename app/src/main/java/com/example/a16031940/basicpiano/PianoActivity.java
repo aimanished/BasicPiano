@@ -1,6 +1,8 @@
 package com.example.a16031940.basicpiano;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -15,7 +17,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
+import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -53,10 +60,60 @@ public class PianoActivity extends AppCompatActivity {
         btnStopRecord = findViewById(R.id.stopRecord);
         btnPlay = findViewById(R.id.playrecord);
 
-        btnRecord.setOnClickListener(new View.OnClickListener() {
+        // HERE FLOATING BUTTON
+
+        // in Activity Context
+        final ImageView icon = new ImageView(this); // Create an icon
+        icon.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_launcher_background));
+
+        // put the position
+        final FloatingActionButton rightLowerButton = new FloatingActionButton.Builder(this).setContentView(icon).setPosition(FloatingActionButton.POSITION_BOTTOM_RIGHT).build();
+
+        // make smaller buttons
+        SubActionButton.Builder rLSubBuilder = new SubActionButton.Builder(this);
+
+        final ImageView menuOption1 = new ImageView(this);
+        final ImageView menuOption2 = new ImageView(this);
+        final ImageView menuOption3 = new ImageView(this);
+        final ImageView menuOption4 = new ImageView(this);
+
+        menuOption1.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_launcher_background));
+
+        menuOption2.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_launcher_background));
+
+        menuOption3.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_launcher_background));
+
+        menuOption4.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_launcher_background));
+
+
+        // attach to a bigger button.
+        final FloatingActionMenu rightLowerMenu = new FloatingActionMenu.Builder(this).addSubActionView(rLSubBuilder.setContentView(menuOption1).build()).addSubActionView(rLSubBuilder.setContentView(menuOption2).build()).addSubActionView(rLSubBuilder.setContentView(menuOption3).build()).addSubActionView(rLSubBuilder.setContentView(menuOption4).build()).attachTo(rightLowerButton).build();
+
+
+        // animation when opening or closing the button
+
+        rightLowerMenu.setStateChangeListener(new FloatingActionMenu.MenuStateChangeListener() {
+            @Override
+            public void onMenuOpened(FloatingActionMenu floatingActionMenu) {
+                icon.setRotation(0);
+                PropertyValuesHolder pvhR = PropertyValuesHolder.ofFloat(View.ROTATION, 45);
+                ObjectAnimator animation = ObjectAnimator.ofPropertyValuesHolder(icon, pvhR);
+                animation.start();
+            }
+
+            @Override
+            public void onMenuClosed(FloatingActionMenu floatingActionMenu) {
+                icon.setRotation(45);
+                PropertyValuesHolder pvhR = PropertyValuesHolder.ofFloat(View.ROTATION, 0);
+                ObjectAnimator animation = ObjectAnimator.ofPropertyValuesHolder(icon, pvhR);
+                animation.start();
+            }
+
+        });
+
+        menuOption1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (CheckPermissionFromDevice()) {
 
                     pathSave = Environment.getExternalStorageDirectory()
@@ -70,34 +127,36 @@ public class PianoActivity extends AppCompatActivity {
                         e1.printStackTrace();
                     }
 
-                    btnPlay.setEnabled(false);
-                    btnStop.setEnabled(false);
-                    btnStopRecord.setEnabled(true);
-                    btnRecord.setEnabled(false);
+                    menuOption3.setEnabled(false);
+                    menuOption4.setEnabled(false);
+                    menuOption2.setEnabled(true);
+                    menuOption1.setEnabled(false);
                     Toast.makeText(PianoActivity.this, "Recording", Toast.LENGTH_SHORT).show();
                 } else {
                     requestPermission();
-                }
-            }
+                }            }
         });
 
-        btnStopRecord.setOnClickListener(new View.OnClickListener() {
+        menuOption2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mediaRecorder.stop();
-                btnStopRecord.setEnabled(false);
-                btnPlay.setEnabled(true);
-                btnRecord.setEnabled(true);
-                btnStop.setEnabled(true);
+                menuOption2.setEnabled(false);
+                menuOption3.setEnabled(true);
+                menuOption1.setEnabled(true);
+                menuOption4.setEnabled(true);
+                Toast.makeText(PianoActivity.this, "Stop Recording", Toast.LENGTH_SHORT).show();
+
             }
         });
 
-        btnPlay.setOnClickListener(new View.OnClickListener() {
+        menuOption3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnStop.setEnabled(true);
-                btnStopRecord.setEnabled(false);
-                btnRecord.setEnabled(false);
+                menuOption4.setEnabled(true);
+                menuOption2.setEnabled(false);
+                menuOption1.setEnabled(false);
+                menuOption3.setEnabled(true);
 
 
                 mediaPlayer = new MediaPlayer();
@@ -111,25 +170,110 @@ public class PianoActivity extends AppCompatActivity {
                 }
 
                 mediaPlayer.start();
-                Toast.makeText(PianoActivity.this, "Playing..", Toast.LENGTH_SHORT).show();
-            }
+                Toast.makeText(PianoActivity.this, "Playing..", Toast.LENGTH_SHORT).show();            }
         });
 
-        btnStop.setOnClickListener(new View.OnClickListener() {
+        menuOption4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnStopRecord.setEnabled(false);
-                btnRecord.setEnabled(true);
-                btnStop.setEnabled(false);
-                btnPlay.setEnabled(true);
+                menuOption2.setEnabled(false);
+                menuOption1.setEnabled(true);
+                menuOption3.setEnabled(false);
+                menuOption4.setEnabled(true);
 
                 if (mediaPlayer != null) {
                     mediaPlayer.stop();
                     mediaPlayer.release();
                     setUpMediaRecorder();
                 }
+                Toast.makeText(PianoActivity.this, "Stop Playing...", Toast.LENGTH_SHORT).show();
+
             }
+
         });
+
+
+        // END FLOATING BUTTON
+
+
+
+//        btnRecord.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+////
+////                if (CheckPermissionFromDevice()) {
+////
+////                    pathSave = Environment.getExternalStorageDirectory()
+////                            .getAbsolutePath() + "/"
+////                            + UUID.randomUUID().toString() + "_audio_record.3gp";
+////                    setUpMediaRecorder();
+////                    try {
+////                        mediaRecorder.prepare();
+////                        mediaRecorder.start();
+////                    } catch (IOException e1) {
+////                        e1.printStackTrace();
+////                    }
+////
+////                    btnPlay.setEnabled(false);
+////                    btnStop.setEnabled(false);
+////                    btnStopRecord.setEnabled(true);
+////                    btnRecord.setEnabled(false);
+////                    Toast.makeText(PianoActivity.this, "Recording", Toast.LENGTH_SHORT).show();
+////                } else {
+////                    requestPermission();
+////                }
+////            }
+////        });
+////
+////        btnStopRecord.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+////                mediaRecorder.stop();
+////                btnStopRecord.setEnabled(false);
+////                btnPlay.setEnabled(true);
+////                btnRecord.setEnabled(true);
+////                btnStop.setEnabled(true);
+////            }
+////        });
+////
+////        btnPlay.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+////                btnStop.setEnabled(true);
+////                btnStopRecord.setEnabled(false);
+////                btnRecord.setEnabled(false);
+////
+////
+////                mediaPlayer = new MediaPlayer();
+////                try {
+////                    mediaPlayer.setDataSource(pathSave);
+////                    mediaPlayer.prepare();
+////
+////
+////                } catch (IOException e1) {
+////                    e1.printStackTrace();
+////                }
+////
+////                mediaPlayer.start();
+////                Toast.makeText(PianoActivity.this, "Playing..", Toast.LENGTH_SHORT).show();
+////            }
+////        });
+////
+////        btnStop.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+////                btnStopRecord.setEnabled(false);
+////                btnRecord.setEnabled(true);
+////                btnStop.setEnabled(false);
+////                btnPlay.setEnabled(true);
+////
+////                if (mediaPlayer != null) {
+////                    mediaPlayer.stop();
+////                    mediaPlayer.release();
+////                    setUpMediaRecorder();
+////                }
+////            }
+ //       });
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
