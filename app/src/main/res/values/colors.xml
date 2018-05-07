@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="pianoBackGround">#110307</color>
     <color name="pianoWhite">#ffffff</color>
+    <color name="pianotiles">#edefef</color>
 </resources>

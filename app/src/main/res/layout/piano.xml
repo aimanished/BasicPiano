@@ -3,26 +3,125 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pianoBackGround">
+    android:background="@color/pianotiles"
+    >
+
 
     <Button
-        android:id="@+id/sda"
-        android:layout_width="269dp"
-        android:layout_height="65dp"
+        android:id="@+id/WhiteC"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="177dp"
+        android:background="@color/pianoWhite"
+        />
+
+
+    <Button
+        android:id="@+id/WhiteD"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="83dp"
+        android:background="@color/pianoWhite" />
+
+    <Button
+        android:id="@+id/WhiteE"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="170dp"
+        android:background="@color/pianoWhite" />
+
+    <Button
+        android:id="@+id/WhiteF"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
         android:background="@color/pianoWhite" />
 
 
     <Button
-        android:id="@+id/sd23a"
-        android:layout_width="269dp"
-        android:layout_height="65dp"
+        android:id="@+id/WhiteG"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="81dp"
-        android:background="@color/pianoWhite" />
+        android:layout_marginBottom="170dp"
+        android:background="@color/pianoWhite"
+        android:padding="10dp" />
 
+
+    <Button
+        android:id="@+id/WhiteA"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="84dp"
+        android:background="@color/pianoWhite"
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/WhiteB"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/pianoWhite"
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/blackC"
+        android:layout_width="217dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="42dp"
+        android:background="@color/pianoBackGround" />
+
+    <Button
+        android:id="@+id/blackD"
+        android:layout_width="217dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="130dp"
+        android:background="@color/pianoBackGround" />
+
+    <Button
+        android:id="@+id/blackF"
+        android:layout_width="217dp"
+        android:layout_height="70dp"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="45dp"
+        android:background="@color/pianoBackGround" />
+
+    <Button
+        android:id="@+id/blackG"
+        android:layout_width="217dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="209dp"
+        android:background="@color/pianoBackGround" />
+
+    <Button
+        android:id="@+id/blackH"
+        android:layout_width="217dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="130dp"
+        android:background="@color/pianoBackGround" />
 
 </RelativeLayout>

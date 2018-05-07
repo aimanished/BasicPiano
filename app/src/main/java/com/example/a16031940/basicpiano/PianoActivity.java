@@ -29,7 +29,7 @@ import java.util.UUID;
 
 public class PianoActivity extends AppCompatActivity {
 
-    Button a, b, c, d, e, f, g, h;
+    Button a, b, c, d, e, f, g, Bc , Bd, Bf,Bg,Bh;
     Button btnStop, btnStopRecord, btnPlay, btnRecord;
     String pathSave = "";
     MediaRecorder mediaRecorder;
@@ -38,22 +38,26 @@ public class PianoActivity extends AppCompatActivity {
     final int REQUEST_PERMISSION_CODE = 1000;
 
     private SoundPool soundPool;
-    private int sound_a, sound_b, sound_c, sound_d, sound_e, sound_f, sound_g, sound_h;
+    private int  sound_1c,  sound_1c1, sound_1d,sound_1d1, sound_1e, sound_1f,sound_1f1, sound_1g,sound_1g1,sound_2a,sound_2a1,sound_2b, sound_2c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_piano);
+        setContentView(R.layout.pianotestting);
 
 
-        a = (Button) findViewById(R.id.a);
-        b = (Button) findViewById(R.id.b);
-        c = (Button) findViewById(R.id.c);
-        d = (Button) findViewById(R.id.d);
-        e = (Button) findViewById(R.id.e);
-        f = (Button) findViewById(R.id.f);
-        g = (Button) findViewById(R.id.g);
-        h = (Button) findViewById(R.id.h);
+        a = (Button) findViewById(R.id.key1);
+        b = (Button) findViewById(R.id.key2);
+        c = (Button) findViewById(R.id.key3);
+        d = (Button) findViewById(R.id.key4);
+        e = (Button) findViewById(R.id.key5);
+        f = (Button) findViewById(R.id.key6);
+        g = (Button) findViewById(R.id.key7);
+        Bc = (Button) findViewById(R.id.blackKey1);
+        Bd = findViewById(R.id.blackKey2);
+        Bf=findViewById(R.id.blackKey3);
+        Bg = findViewById(R.id.blackKey4);
+        Bh = findViewById(R.id.blackKey5);
 
         btnStop = findViewById(R.id.Stop);
         btnRecord = findViewById(R.id.record);
@@ -77,13 +81,13 @@ public class PianoActivity extends AppCompatActivity {
         final ImageView menuOption3 = new ImageView(this);
         final ImageView menuOption4 = new ImageView(this);
 
-        menuOption1.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_launcher_background));
+        menuOption1.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.record));
 
-        menuOption2.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_launcher_background));
+        menuOption2.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.stop));
 
-        menuOption3.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_launcher_background));
+        menuOption3.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.play));
 
-        menuOption4.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_launcher_background));
+        menuOption4.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.pause));
 
 
         // attach to a bigger button.
@@ -283,84 +287,125 @@ public class PianoActivity extends AppCompatActivity {
 
         }
 
-        sound_a = soundPool.load(this, R.raw.anote, 1);
-        sound_b = soundPool.load(this, R.raw.bnote, 1);
-        sound_c = soundPool.load(this, R.raw.cnote, 1);
-        sound_d = soundPool.load(this, R.raw.dnote, 1);
-        sound_e = soundPool.load(this, R.raw.enote, 1);
-        sound_f = soundPool.load(this, R.raw.fnote, 1);
-        sound_g = soundPool.load(this, R.raw.gnote, 1);
-        sound_h = soundPool.load(this, R.raw.hnote, 1);
-
-        a.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                soundPool.play(sound_a, 1, 1, 0, 0, 1);
-            }
-        });
-
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                soundPool.play(sound_b, 1, 1, 0, 0, 1);
-
-            }
-        });
+        sound_1c = soundPool.load(this, R.raw.cc, 1);
+        sound_1c1 = soundPool.load(this, R.raw.ccc, 1);
+        sound_1d = soundPool.load(this, R.raw.dd, 1);
+        sound_1d1 = soundPool.load(this, R.raw.ddd, 1);
+        sound_1e = soundPool.load(this, R.raw.ee, 1);
+        sound_1f = soundPool.load(this, R.raw.ff, 1);
+        sound_1f1 = soundPool.load(this, R.raw.fff, 1);
+        sound_1g = soundPool.load(this, R.raw.gg, 1);
+        sound_1g1 = soundPool.load(this, R.raw.ggg, 1);
+        sound_2a = soundPool.load(this, R.raw.aa, 1);
+        sound_2a1 = soundPool.load(this, R.raw.aaa, 1);
+        sound_2b = soundPool.load(this, R.raw.bb, 1);
 
 
-        c.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                soundPool.play(sound_c, 1, 1, 0, 0, 1);
 
-            }
-        });
+        allSounds();
+        }
+
+        private void allSounds(){
 
 
-        d.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                soundPool.play(sound_d, 1, 1, 0, 0, 1);
+            a.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    soundPool.play(sound_1c, 1, 1, 0, 0, 1);
+                }
+            });
 
-            }
-        });
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    soundPool.play(sound_1d, 1, 1, 0, 0, 1);
 
-
-        e.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                soundPool.play(sound_e, 1, 1, 0, 0, 1);
-
-            }
-        });
+                }
+            });
 
 
-        f.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                soundPool.play(sound_f, 1, 1, 0, 0, 1);
+            c.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    soundPool.play(sound_1e, 1, 1, 0, 0, 1);
 
-            }
-        });
-
-
-        g.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                soundPool.play(sound_g, 1, 1, 0, 0, 1);
-
-            }
-        });
+                }
+            });
 
 
-        h.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                soundPool.play(sound_h, 1, 1, 0, 0, 1);
+            d.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    soundPool.play(sound_1f, 1, 1, 0, 0, 1);
 
-            }
-        });
-    }
+                }
+            });
+
+
+            e.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    soundPool.play(sound_1g, 1, 1, 0, 0, 1);
+
+                }
+            });
+
+
+            f.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    soundPool.play(sound_2a, 1, 1, 0, 0, 1);
+
+                }
+            });
+
+
+            g.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    soundPool.play(sound_2b, 1, 1, 0, 0, 1);
+
+                }
+            });
+
+
+            Bc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    soundPool.play(sound_1c1, 1, 1, 0, 0, 1);
+                }
+            });
+
+
+            Bd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    soundPool.play(sound_1d1, 1, 1, 0, 0, 1);
+                }
+            });
+
+            Bf.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    soundPool.play(sound_1f1, 1, 1, 0, 0, 1);
+                }
+            });
+
+            Bg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    soundPool.play(sound_1g1, 1, 1, 0, 0, 1);
+                }
+            });
+
+            Bh.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    soundPool.play(sound_2a1, 1, 1, 0, 0, 1);
+                }
+            });
+        }
+
 
     private void setUpMediaRecorder() {
         mediaRecorder = new MediaRecorder();
